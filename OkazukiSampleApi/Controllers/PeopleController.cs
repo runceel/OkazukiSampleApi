@@ -10,6 +10,7 @@ using System.Web.Http.Description;
 
 namespace OkazukiSampleApi.Controllers
 {
+    [Authorize]
     public class PeopleController : ApiController
     {
         private SampleApiContext db = new SampleApiContext();
