@@ -18,7 +18,7 @@ namespace OkazukiSampleApi
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                AllowInsecureHttp = false
+                AllowInsecureHttp = false,
             });
         }
     }
@@ -26,6 +26,12 @@ namespace OkazukiSampleApi
     class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         public override Task ValidateAuthorizeRequest(OAuthValidateAuthorizeRequestContext context)
+        {
+            context.Validated();
+            return Task.FromResult(0);
+        }
+
+        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
             return Task.FromResult(0);

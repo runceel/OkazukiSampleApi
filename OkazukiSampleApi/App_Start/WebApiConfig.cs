@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace OkazukiSampleApi
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             // Web API の設定およびサービス
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
